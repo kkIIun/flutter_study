@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key key}) : super(key: key);
+  const MyStatefulWidget({Key? key}) : super(key: key);
 
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
@@ -12,7 +12,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector( // 버튼이 아닌 것을 버튼처럼 만들어줌 
+    return GestureDetector(
+      // 버튼이 아닌 것을 버튼처럼 만들어줌
       onTap: () {
         // 클릭했을 때
         setState(() {
@@ -37,4 +38,3 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 }
-
