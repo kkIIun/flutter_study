@@ -17,8 +17,19 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 2),
     vsync: this,
-  )..repeat(reverse: true);
-  late final Animation<double> _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn)
+  )..repeat(reverse: true)
+  // ..addStatusListener((status) {print('$status');});
+  ..addListener(() {
+    setState(() {
+      print(_tween.animate(_controller));
+    });
+  });
+  
+  late final Animation<double> _animation =CurvedAnimation(
+    parent: _controller,
+    curve: Curves.easeIn
+    );
+  late final Animatable<double> _tween = Tween(begin:0.0, end:2.0);
 
   @override
   void dispose() {
@@ -31,7 +42,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
     return Container(
       color: Colors.white,
       child: FadeTransition(
-        opacity: _animation,
+        opacity: _tween.animate(_animation),
         child: Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
