@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'FadeTransition.dart';
 
 void main() => runApp(const MyApp());
@@ -11,13 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return CupertinoApp(
       title: _title,
-      home: Scaffold(
-        // 구조에 대한 시각화 레이아웃
-        // appBar: AppBar(title: const Text(_title)),
-        body: const MyStatefulWidget(),
-      ),
+      home: MyStatefulWidget(),
     );
   }
 }
