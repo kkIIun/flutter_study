@@ -25,7 +25,7 @@ class _MystatefulWidget extends State<MyStatefulWidget> {
       ),
       _TabInfo(
         "Menu",
-        CupertinoIcons.list_bullet,
+        Icons.menu,
       ),
       _TabInfo(
         "Profile",
@@ -47,10 +47,10 @@ class _MystatefulWidget extends State<MyStatefulWidget> {
           );
         },
         tabBar: CupertinoTabBar(
+          backgroundColor: Colors.white,
           items: <BottomNavigationBarItem>[
             for (final tabInfo in _tabInfo)
               BottomNavigationBarItem(
-                label: tabInfo.title,
                 icon: Icon(tabInfo.icon),
               ),
           ],
@@ -73,8 +73,14 @@ class _CupertinoTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(),
-      backgroundColor: CupertinoColors.systemBackground,
+      navigationBar: const CupertinoNavigationBar(
+        backgroundColor: Colors.white,
+        middle: const Text(
+          'Home',
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
+      backgroundColor: CupertinoColors.white,
       child: Center(
         child: Icon(
           icon,

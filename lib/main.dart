@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return CupertinoApp(
       title: _title,
       home: MyStatefulWidget(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
