@@ -8,37 +8,79 @@ class MyStatefulWidget extends StatefulWidget {
   _MystatefulWidget createState() => _MystatefulWidget();
 }
 
-class _MystatefulWidget extends State<MyStatefulWidget> {
-  int _count = 0;
-  final GlobalKey _key = GlobalKey();
+class _TabInfo {
+  const _TabInfo(this.title, this.icon);
 
-  _getSizes() {
-    RenderObject? renderBox = _key.currentContext.findRenderObject();
-    final size = renderBox.size;
-    return size;
+  final String title;
+  final IconData icon;
+}
+
+class _MystatefulWidget extends State<MyStatefulWidget> {
+  @override
+  Widget build(BuildContext context) {
+    final _tabInfo = [
+      _TabInfo(
+        "Home",
+        CupertinoIcons.home,
+      ),
+      _TabInfo(
+        "Menu",
+        CupertinoIcons.list_bullet,
+      ),
+      _TabInfo(
+        "Profile",
+        CupertinoIcons.profile_circled,
+      ),
+    ];
+    return DefaultTextStyle(
+      style: CupertinoTheme.of(context).textTheme.textStyle,
+      child: CupertinoTabScaffold(
+        restorationId: 'cupertino_tab_scaffold',
+        tabBuilder: (context, index) {
+          return CupertinoTabView(
+            restorationScopeId: 'cupertino_tab_scaffold',
+            builder: (context) => _CupertinoTab(
+              title: _tabInfo[index].title,
+              icon: _tabInfo[index].icon,
+            ),
+            defaultTitle: _tabInfo[index].title,
+          );
+        },
+        tabBar: CupertinoTabBar(
+          items: <BottomNavigationBarItem>[
+            for (final tabInfo in _tabInfo)
+              BottomNavigationBarItem(
+                label: tabInfo.title,
+                icon: Icon(tabInfo.icon),
+              ),
+          ],
+        ),
+      ),
+    );
   }
+}
+
+class _CupertinoTab extends StatelessWidget {
+  const _CupertinoTab({
+    Key? key,
+    required this.title,
+    required this.icon,
+  }) : super(key: key);
+
+  final String title;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text('Sample Code'),
-      ),
-      child: ListView(
-        children: <Widget>[
-          CupertinoButton(
-            key: _key,
-            onPressed: () => setState(() => _count++),
-            child: const Icon(CupertinoIcons.add),
-          ),
-          Container(
-            child: Center(
-                child: Text('You have pressed the button $_count times.')),
-            color: Colors.white,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height - ,
-          ),
-        ],
+      navigationBar: const CupertinoNavigationBar(),
+      backgroundColor: CupertinoColors.systemBackground,
+      child: Center(
+        child: Icon(
+          icon,
+          semanticLabel: title,
+          size: 100,
+        ),
       ),
     );
   }
