@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-
-  @override
-  _MystatefulWidget createState() => _MystatefulWidget();
-}
-
 class _TabInfo {
   const _TabInfo(this.title, this.icon);
 
   final String title;
   final IconData icon;
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  _MystatefulWidget createState() => _MystatefulWidget();
 }
 
 class _MystatefulWidget extends State<MyStatefulWidget> {
@@ -33,7 +33,7 @@ class _MystatefulWidget extends State<MyStatefulWidget> {
       ),
     ];
     return DefaultTextStyle(
-      style: CupertinoTheme.of(context).textTheme.textStyle,
+      style: TextStyle(color: Colors.black),
       child: CupertinoTabScaffold(
         restorationId: 'cupertino_tab_scaffold',
         tabBuilder: (context, index) {
@@ -72,14 +72,11 @@ class _CupertinoTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const String title1 = 'title';
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
-        backgroundColor: Colors.white,
-        middle: const Text(
-          'Home',
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
+          // backgroundColor: Colors.white,
+          ),
       backgroundColor: CupertinoColors.white,
       child: Center(
         child: Icon(
