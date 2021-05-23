@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'AnimatedAlign.dart';
-import 'FadeTransition.dart';
-import 'mymainpage.dart';
+import 'mainpage.dart';
 
 void main() => runApp(MyApp(
     // initialRoute: '/',
@@ -20,9 +18,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
+    return MaterialApp(
       title: _title,
-      home: MyStatefulWidget(),
+      home: MainScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
