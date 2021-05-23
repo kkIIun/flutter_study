@@ -44,13 +44,20 @@ class _MainScreen extends State<MainScreen> {
         child: ListView.separated(
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                decoration: new BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        BorderRadius.all(const Radius.circular(40.0))),
+                margin: EdgeInsets.only(top: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(40),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(10, 10),
+                    )
+                  ],
+                ),
                 height: 76,
-                width: 100,
-                color: Colors.white,
                 child: Center(
                     child: Text(
                   '${_lists[index]}',
